@@ -16,7 +16,7 @@ bool fileExists(const char* path)
 
 Incognito::Incognito()
 {
-	if (fsOpenBisStorage(&m_sh, FsBisStorageId_CalibrationBinary))
+	if (fsOpenBisStorage(&m_sh, FsBisPartitionId_CalibrationBinary))
 	{
 		printf("error: failed to open cal0 partition.\n");
 		m_open = false;
@@ -110,9 +110,9 @@ bool Incognito::backup()
 	return true;
 }
 
-u64 Incognito::size()
+s64 Incognito::size()
 {
-	u64 s = 0;
+	s64 s = 0;
 	fsStorageGetSize(&m_sh, &s);
 	return s;
 }
